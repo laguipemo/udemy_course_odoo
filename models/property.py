@@ -1,18 +1,31 @@
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
-# from odoo import models, fields, api
+from odoo import models, fields, api
 
+class Property(models.Model):
+    _name = 'real_estate_ads.property'
+    _description = 'Estate properties'
 
-# class real_estate_ads(models.Model):
-#     _name = 'real_estate_ads.real_estate_ads'
-#     _description = 'real_estate_ads.real_estate_ads'
-
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+    name = fields.Char(string="Name", required=True)
+    description = fields.Text(string="Description")
+    postcode = fields.Char(string="Postcode")
+    date_availability = fields.Date(string="Date", readonly=True)
+    expected_price = fields.Float(string="Expected Price")
+    best_offer = fields.Float(streing="Best Offer")
+    selling_price = fields.Float(string="Selling Price")
+    bedrooms = fields.Integer(string="Bedrooms")
+    living_area = fields.Integer(strling="Living Area(sqm)")
+    facades = fields.Integer(strling="Facades")
+    garage = fields.Integer(strling="Garage", default=False)
+    garden = fields.Integer(strling="Garden", default=False)
+    garden_area = fields.Integer(strling="Garden Area(sqm)")
+    garden_orientation = fields.Selection(
+        string="Garden Orientation",
+        selection=[
+            ('north', 'North'),
+            ('south', 'South'),
+            ('east', 'East'),
+            ('west', 'West'),
+        ],
+        default='north'
+    )

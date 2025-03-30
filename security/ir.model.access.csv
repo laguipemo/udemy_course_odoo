@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_real_estate_ads_real_estate_ads,real_estate_ads.real_estate_ads,model_real_estate_ads_real_estate_ads,base.group_user,1,1,1,1
+access_real_estate_ads_property,real_estate_ads.property,model_real_estate_ads_property,base.group_user,1,1,1,1
