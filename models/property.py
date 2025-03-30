@@ -1,12 +1,25 @@
 #-*- coding: utf-8 -*-
-
 from odoo import models, fields, api
+from odoo.api import depends
+
 
 class Property(models.Model):
     _name = 'real_estate_ads.property'
     _description = 'Estate properties'
 
     name = fields.Char(string="Name", required=True)
+    type_id = fields.Many2one(
+        comodel_name="real_estate_ads.property_type",
+        string="Property Type"
+    )
+    tag_ids = fields.Many2many(
+        comodel_name="real_estate_ads.property_tag",
+        relation="property_tags_rel",
+        column1="property_tag_id",
+        column2="property_id",
+        string="Tags"
+    )
+
     description = fields.Text(string="Description")
     postcode = fields.Char(string="Postcode")
     date_availability = fields.Date(string="Date", readonly=True)
@@ -29,3 +42,26 @@ class Property(models.Model):
         ],
         default='north'
     )
+    offer_ids = fields.One2many(
+        comodel_name="real_estate_ads.property_offer",
+        inverse_name="property_id",
+        string="Offers"
+    )
+    sales_id = fields.Many2one(
+        comodel_name="res.users",
+        string="Salesman"
+    )
+    buyer_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Buyer"
+    )
+    total_area = fields.Integer(
+        string="Total Area",
+        compute="_compute_total_area"
+    )
+
+    @api.depends('living_area', 'garden_area')
+    def _compute_total_area(self):
+        for rec in self:
+            rec.total_area = rec.living_area + rec.garden_area
+
