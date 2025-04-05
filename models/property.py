@@ -53,7 +53,12 @@ class Property(models.Model):
     )
     buyer_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Buyer"
+        string="Buyer",
+        domain=[('is_company', '=', True)] # show only the companies
+    )
+    phone = fields.Char(
+        string="Phone",
+        related="buyer_id.phone"
     )
     total_area = fields.Integer(
         string="Total Area",
