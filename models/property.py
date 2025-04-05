@@ -50,8 +50,8 @@ class Property(models.Model):
     bedrooms = fields.Integer(string="Bedrooms")
     living_area = fields.Integer(strling="Living Area(sqm)")
     facades = fields.Integer(strling="Facades")
-    garage = fields.Integer(strling="Garage", default=False)
-    garden = fields.Integer(strling="Garden", default=False)
+    garage = fields.Boolean(strling="Garage", default=False)
+    garden = fields.Boolean(strling="Garden", default=False)
     garden_area = fields.Integer(strling="Garden Area(sqm)")
     garden_orientation = fields.Selection(
         string="Garden Orientation",

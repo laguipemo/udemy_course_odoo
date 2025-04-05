@@ -20,6 +20,7 @@
           <field name="expected_price" optional="hide" />
           <field name="best_offer"/>
           <field name="selling_price"/>
+          <field name="state" widget="badge"/>
         </tree>
       </field>
     </record>
@@ -43,8 +44,8 @@
               </button>
             </div>
             <group>
-              <field name="name" placeholder="Name of the property"/>
-              <field name="tag_ids" widget="many2many_tags"/>
+              <field name="name" placeholder="Name of the property" widget="char_emojis"/>
+              <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
               <separator/>
               <group>
                 <field name="type_id"/>
@@ -65,9 +66,9 @@
                     <field name="living_area"/>
                     <field name="facades"/>
                     <field name="garage"/>
-                    <field name="garden"/>
-                    <field name="garden_area"/>
-                    <field name="garden_orientation"/>
+                    <field name="garden" widget="boolean_toggle"/>
+                    <field name="garden_area" attrs="{'invisible': [('garden', '=', False)]}"/>
+                    <field name="garden_orientation" attrs="{'invisible': [('garden', '=', False)]}" widget="selection_badge"/>
                     <field name="total_area"/>
                   </group>
 
@@ -80,16 +81,16 @@
                       <field name="property_id"/>
                       <field name="creation_date"/>
                       <field name="validity"/>
-                      <field name="deadline"/>
+                      <field name="deadline" widget="remaining_days"/>
                       <field name="status" nolabel="1"/>
                     </tree>
                   </field>
                 </page>
                 <page string="Other Info">
                   <group>
-                    <field name="sales_id"/>
+                    <field name="sales_id" widget="many2one_avatar"/>
                     <field name="buyer_id"/>
-                    <field name="phone"/>
+                    <field name="phone" widget="phone" />
                   </group>
                 </page>
               </notebook>

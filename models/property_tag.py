@@ -7,3 +7,4 @@ class PropertyTag(models.Model):
     _description = 'Tag assigned to a property'
 
     name = fields.Char(string="Name", required=True)
+    color = fields.Integer(string="Color")

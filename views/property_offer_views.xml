@@ -13,7 +13,7 @@
           <field name="property_id" />
           <field name="creation_date" />
           <field name="validity" />
-          <field name="deadline" />
+          <field name="deadline" widget="remaining_days"/>
         </tree>
       </field>
     </record>
