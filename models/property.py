@@ -7,6 +7,16 @@ class Property(models.Model):
     _name = 'real_estate_ads.property'
     _description = 'Estate properties'
 
+    def action_real_estate_ads_property_show_offers_action_window(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Offers',
+            'res_model': 'real_estate_ads.property_offer',
+            'view_mode': 'tree,form',
+            'domain': [('property_id', '=', self.id)],
+            'context': {'create': False}
+    }
+
     name = fields.Char(string="Name", required=True)
     state = fields.Selection(
         string="Status",
@@ -71,6 +81,10 @@ class Property(models.Model):
         string="Phone",
         related="buyer_id.phone"
     )
+    offer_count = fields.Integer(
+        string="Offer Count",
+        compute="_compute_offer_count"
+    )
     total_area = fields.Integer(
         string="Total Area",
         compute="_compute_total_area"
@@ -88,3 +102,8 @@ class Property(models.Model):
     def action_cancel(self):
         for rec in self:
             rec.state = "cancel"
+
+    @api.depends('offer_ids')
+    def _compute_offer_count(self):
+        for rec in self:
+            rec.offer_count = len(rec.offer_ids)

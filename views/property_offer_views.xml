@@ -6,7 +6,14 @@
       <field name="model">real_estate_ads.property_offer</field>
       <field name="arch" type="xml">
         <tree>
-
+          <field name="name" />
+          <field name="price" />
+          <field name="status" />
+          <field name="partner_id" />
+          <field name="property_id" />
+          <field name="creation_date" />
+          <field name="validity" />
+          <field name="deadline" />
         </tree>
       </field>
     </record>
@@ -19,7 +26,18 @@
         <form>
           <sheet>
             <group>
-
+              <group>
+                <field name="name" />
+                <field name="price" />
+                <field name="status" />
+                <field name="partner_id" />
+                <field name="property_id" />
+              </group>
+              <group>
+                <field name="creation_date" />
+                <field name="validity" />
+                <field name="deadline" />
+              </group>
             </group>
           </sheet>
         </form>
@@ -31,12 +49,6 @@
       <field name="name">Property Offer</field>
       <field name="res_model">real_estate_ads.property_offer</field>
       <field name="view_mode">tree,form</field>
-      <field name="view_id" ref="real_estate_ads.real_estate_ads_property_offer_list_view" />
-      <field name="help" type="html">
-        <p class="o.view_nocontent_smiling_face">
-          Create a Property to Advertise
-        </p>
-      </field>
     </record>
 
     <!-- server action to the one above -->
@@ -63,7 +75,7 @@
     &lt;!&ndash;<menuitem name="Menu 2" id="real_estate_ads.menu_2" parent="real_estate_ads.menu_root"/>&ndash;&gt;
 -->
     <!-- actions -->
-    <menuitem name="Property Offers" id="real_estate_ads_menu_property_offers" parent="real_estate_ads_menu_settings"
+    <menuitem name="Offers" id="real_estate_ads_menu_property_offers" parent="real_estate_ads_menu_settings"
               action="real_estate_ads_property_offer_action_window"/>
     <!--<menuitem name="Server to list" id="real_estate_ads" parent="real_estate_ads.menu_2"
               action="real_estate_ads.action_server"/>-->

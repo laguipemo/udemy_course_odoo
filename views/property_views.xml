@@ -1,5 +1,12 @@
 <odoo>
   <data>
+    <record model="ir.actions.act_window" id="real_estate_ads_property_show_offers_action_window">
+      <field name="name">Offers</field>
+      <field name="res_model">real_estate_ads.property_offer</field>
+      <field name="domain">[('property_id', '=', active_id)]</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
     <!-- explicit list view definition -->
     <record model="ir.ui.view" id="real_estate_ads_property_list_view">
       <field name="name">real_estate_ads property list</field>
@@ -29,6 +36,12 @@
             <field name="state" widget="statusbar" /> <!-- statusbar_visible="new, receive" /> -->
           </header>
           <sheet>
+            <div class="oe_button_box" name="button_box">
+              <!--<button class="oe_stat_button" name="%(real_estate_ads.real_estate_ads_property_show_offers_action_window)d" type="action" >-->
+              <button class="oe_stat_button" name="action_real_estate_ads_property_show_offers_action_window" type="object" >
+                <field name="offer_count" string="Offers" widget="statinfo" />
+              </button>
+            </div>
             <group>
               <field name="name" placeholder="Name of the property"/>
               <field name="tag_ids" widget="many2many_tags"/>

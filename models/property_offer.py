@@ -8,6 +8,11 @@ class PropertyOffer(models.Model):
     _name = 'real_estate_ads.property_offer'
     _description = 'Estate Property Offers'
 
+    name = fields.Char(
+        string="Description",
+        compute="_compute_name"
+    )
+
     price = fields.Float(string="Price")
     status = fields.Selection(
         selection=[
@@ -43,3 +48,11 @@ class PropertyOffer(models.Model):
     def _inverse_deadline(self):
         for rec in self:
             rec.validity = (rec.deadline - rec.creation_date).days
+
+    @api.depends('partner_id', 'property_id')
+    def _compute_name(self):
+        for rec in self:
+            if rec.partner_id and rec.property_id:
+                rec.name = f"{rec.property_id.name} - {rec.partner_id.name}"
+            else:
+                rec.name = False
