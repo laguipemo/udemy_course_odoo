@@ -8,6 +8,17 @@ class Property(models.Model):
     _description = 'Estate properties'
 
     name = fields.Char(string="Name", required=True)
+    state = fields.Selection(
+        string="Status",
+        selection=[
+            ('new', 'New'),
+            ('received', 'Offer Received'),
+            ('accepted', 'Offer Accepted'),
+            ('sold', 'Sold'),
+            ('cancel', 'Cancelled'),
+        ],
+        default='new'
+    )
     type_id = fields.Many2one(
         comodel_name="real_estate_ads.property_type",
         string="Property Type"
@@ -70,3 +81,10 @@ class Property(models.Model):
         for rec in self:
             rec.total_area = rec.living_area + rec.garden_area
 
+    def action_sold(self):
+        for rec in self:
+            rec.state = "sold"
+
+    def action_cancel(self):
+        for rec in self:
+            rec.state = "cancel"
