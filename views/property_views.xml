@@ -1,5 +1,6 @@
 <odoo>
   <data>
+    <!-- explicit list view definition for show property offers from small button-->
     <record model="ir.actions.act_window" id="real_estate_ads_property_show_offers_action_window">
       <field name="name">Offers</field>
       <field name="res_model">real_estate_ads.property_offer</field>
@@ -7,6 +8,22 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+    <!-- explicit quick create form view definition -->
+    <record model="ir.ui.view" id="real_estate_ads_property_quick_create_form_view">
+      <field name="name">real_estate_ads property quick create form</field>
+      <field name="model">real_estate_ads.property</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="name"/>
+            <field name="postcode"/>
+          </group>
+
+        </form>
+      </field>
+    </record>
+
+    <!-- explicit search view definition  with filters, group by and search panel -->
     <record model="ir.ui.view" id="real_estate_ads_property_search_view">
       <field name="name">real_estate_ads property search</field>
       <field name="model">real_estate_ads.property</field>
@@ -28,9 +45,9 @@
           <group expand="0" string="Group By">
             <filter string="Status" name="group_by_state" context="{'group_by': 'state'}"/>
           </group>
-          <searchpanel>
+          <!--<searchpanel>
             <field name="state" icon="fa fa-filter" group="group_by_state" limit="0" />
-          </searchpanel>
+          </searchpanel>-->
         </search>
       </field>
     </record>
@@ -53,6 +70,46 @@
       </field>
     </record>
 
+    <!-- explicit kanban view definition -->
+    <record model="ir.ui.view" id="real_estate_ads_property_kanban_view">
+      <field name="name">real_estate_ads property kanban</field>
+      <field name="model">real_estate_ads.property</field>
+      <field name="arch" type="xml">
+        <kanban
+                default_group_by="state"
+                on_create="quick_create"
+                quick_create_view="real_estate_ads.real_estate_ads_property_quick_create_form_view">
+          <field name="name"/>
+          <field name="state"/>
+          <field name="postcode"/>
+          <field name="buyer_id"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <strong><field name="name"/></strong>
+                </div>
+                <div class="card-body">
+                  <div class="oe_kanban_tags_section">
+                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                  </div>
+
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                  <div>
+                    <span class="fa fa-handshake-o mx-2" /><field name="offer_count" /> Offer(s)
+                  </div>
+                  <div>
+                    <field name="phone" widget="phone"/>
+                  </div>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
     <!-- explicit form view definition -->
     <record model="ir.ui.view" id="real_estate_ads_property_form_view">
       <field name="name">real_estate_ads property form</field>
@@ -67,8 +124,8 @@
           <sheet>
             <div class="oe_button_box" name="button_box">
               <!--<button class="oe_stat_button" name="%(real_estate_ads.real_estate_ads_property_show_offers_action_window)d" type="action" >-->
-              <button class="oe_stat_button fa fa-handshake-o" name="action_real_estate_ads_property_show_offers_action_window" type="object" >
-                <field name="offer_count" string="Offers" widget="statinfo" />
+              <button class="oe_stat_button" name="action_real_estate_ads_property_show_offers_action_window" type="object" >
+                <span class="fa fa-handshake-o mx-2" /><field name="offer_count" string="Offers" widget="statinfo" />
               </button>
             </div>
             <group>
@@ -131,7 +188,7 @@
     <record model="ir.actions.act_window" id="real_estate_ads_property_action_window">
       <field name="name">Property</field>
       <field name="res_model">real_estate_ads.property</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,kanban,form</field>
       <field name="view_id" ref="real_estate_ads.real_estate_ads_property_list_view" />
       <field name="help" type="html">
         <p class="o.view_nocontent_smiling_face">
