@@ -7,6 +7,34 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+    <record model="ir.ui.view" id="real_estate_ads_property_search_view">
+      <field name="name">real_estate_ads property search</field>
+      <field name="model">real_estate_ads.property</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="state"/>
+          <field name="postcode"/>
+          <field name="buyer_id"/>
+          <filter string="New" name="new_state" domain="[('state', '=', 'new')]"/>
+          <filter string="Sold" name="sold_state" domain="[('state', '=', 'sold')]"/>
+          <separator/>
+          <filter string="Received" name="received_state" domain="[('state', '=', 'received')]"/>
+          <filter string="Accepted" name="accepted_state" domain="[('state', '=', 'accepted')]"/>
+          <filter string="Cancelled" name="cancel_state" domain="[('state', '=', 'cancel')]"/>
+          <separator/>
+          <filter string="Active" name="active_state" domain="[('state', 'not in', ['sold', 'cancel'])]"/>
+          <separator/>
+          <group expand="0" string="Group By">
+            <filter string="Status" name="group_by_state" context="{'group_by': 'state'}"/>
+          </group>
+          <searchpanel>
+            <field name="state" icon="fa fa-filter" group="group_by_state" limit="0" />
+          </searchpanel>
+        </search>
+      </field>
+    </record>
+
     <!-- explicit list view definition -->
     <record model="ir.ui.view" id="real_estate_ads_property_list_view">
       <field name="name">real_estate_ads property list</field>
@@ -39,7 +67,7 @@
           <sheet>
             <div class="oe_button_box" name="button_box">
               <!--<button class="oe_stat_button" name="%(real_estate_ads.real_estate_ads_property_show_offers_action_window)d" type="action" >-->
-              <button class="oe_stat_button" name="action_real_estate_ads_property_show_offers_action_window" type="object" >
+              <button class="oe_stat_button fa fa-handshake-o" name="action_real_estate_ads_property_show_offers_action_window" type="object" >
                 <field name="offer_count" string="Offers" widget="statinfo" />
               </button>
             </div>
