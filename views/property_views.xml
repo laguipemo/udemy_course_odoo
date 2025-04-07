@@ -70,6 +70,22 @@
       </field>
     </record>
 
+    <!-- explicit pivot view definition -->
+    <record model="ir.ui.view" id="real_estate_ads_property_pivot_view">
+      <field name="name">real_estate_ads property pivot</field>
+      <field name="model">real_estate_ads.property</field>
+      <field name="arch" type="xml">
+        <pivot>
+          <field name="name" type="row"/>
+          <field name="state" type="col"/>
+          <field name="selling_price" type="measure" />
+          <field name="expected_price" type="measure" />
+          <field name="facades" type="measure"/>
+          <field name="bedrooms" type="measure"/>
+        </pivot>
+      </field>
+    </record>
+
     <!-- explicit kanban view definition -->
     <record model="ir.ui.view" id="real_estate_ads_property_kanban_view">
       <field name="name">real_estate_ads property kanban</field>
@@ -79,7 +95,7 @@
                 default_group_by="state"
                 on_create="quick_create"
                 quick_create_view="real_estate_ads.real_estate_ads_property_quick_create_form_view">
-          <field name="name"/>
+          <field name="name" type="row"/>
           <field name="state"/>
           <field name="postcode"/>
           <field name="buyer_id"/>
@@ -188,7 +204,7 @@
     <record model="ir.actions.act_window" id="real_estate_ads_property_action_window">
       <field name="name">Property</field>
       <field name="res_model">real_estate_ads.property</field>
-      <field name="view_mode">tree,kanban,form</field>
+      <field name="view_mode">tree,kanban,pivot,form</field>
       <field name="view_id" ref="real_estate_ads.real_estate_ads_property_list_view" />
       <field name="help" type="html">
         <p class="o.view_nocontent_smiling_face">
