@@ -43,7 +43,7 @@ class Property(models.Model):
 
     description = fields.Text(string="Description")
     postcode = fields.Char(string="Postcode")
-    date_availability = fields.Date(string="Date", readonly=True)
+    date_availability = fields.Date(string="Available From")
     expected_price = fields.Float(string="Expected Price")
     best_offer = fields.Float(streing="Best Offer")
     selling_price = fields.Float(string="Selling Price")

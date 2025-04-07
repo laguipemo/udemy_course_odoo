@@ -23,6 +23,24 @@
       </field>
     </record>
 
+    <!-- explicit calendar view definition -->
+    <record model="ir.ui.view" id="real_estate_ads_property_calendar_view">
+      <field name="name">real_estate_ads property calendar</field>
+      <field name="model">real_estate_ads.property</field>
+      <field name="arch" type="xml">
+        <calendar
+                date_start="date_availability"
+                string="Properties"
+                mode="month"
+                event_open_popup="true"
+                quick_add="false">
+            <field name="name"/>
+            <field name="date_availability"/>
+            <field name="postcode"/>
+        </calendar>
+      </field>
+    </record>
+
     <!-- explicit search view definition  with filters, group by and search panel -->
     <record model="ir.ui.view" id="real_estate_ads_property_search_view">
       <field name="name">real_estate_ads property search</field>
@@ -216,7 +234,7 @@
     <record model="ir.actions.act_window" id="real_estate_ads_property_action_window">
       <field name="name">Property</field>
       <field name="res_model">real_estate_ads.property</field>
-      <field name="view_mode">tree,kanban,pivot,graph,form</field>
+      <field name="view_mode">tree,kanban,calendar,pivot,graph,form</field>
       <field name="view_id" ref="real_estate_ads.real_estate_ads_property_list_view" />
       <field name="help" type="html">
         <p class="o.view_nocontent_smiling_face">
