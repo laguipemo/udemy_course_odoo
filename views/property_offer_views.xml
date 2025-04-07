@@ -18,6 +18,15 @@
       </field>
     </record>
 
+    <!-- explicit gantt view definition only visible for Enterprise version -->
+    <record model="ir.ui.view" id="real_estate_ads_property_offer_gantt_view">
+      <field name="name">real_estate_ads property offer gantt</field>
+      <field name="model">real_estate_ads.property_offer</field>
+      <field name="arch" type="xml">
+        <gantt date_start="creation_date" date_end="deadline" default_group_by="partner_id"/>
+      </field>
+    </record>
+
     <!-- explicit form view definition -->
     <record model="ir.ui.view" id="real_estate_ads_property_offer_form_view">
       <field name="name">real_estate_ads property offer form</field>
@@ -48,7 +57,7 @@
     <record model="ir.actions.act_window" id="real_estate_ads_property_offer_action_window">
       <field name="name">Property Offer</field>
       <field name="res_model">real_estate_ads.property_offer</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,gantt,form</field>
     </record>
 
     <!-- server action to the one above -->
