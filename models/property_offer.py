@@ -47,7 +47,10 @@ class PropertyOffer(models.Model):
 
     def _inverse_deadline(self):
         for rec in self:
-            rec.validity = (rec.deadline - rec.creation_date).days
+            if rec.creation_date and rec.deadline:
+                rec.validity = (rec.deadline - rec.creation_date).days
+            else:
+                rec.validity = False
 
     @api.depends('partner_id', 'property_id')
     def _compute_name(self):
