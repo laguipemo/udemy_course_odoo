@@ -1,5 +1,6 @@
 #-*- coding: utf-8 -*-
 from Crypto.Util.number import inverse
+from fsspec.registry import default
 
 from odoo import fields, models, api
 from datetime import timedelta
@@ -29,13 +30,19 @@ class PropertyOffer(models.Model):
         comodel_name="real_estate_ads.property",
         string="Property"
     )
-    validity = fields.Integer(string="Validity")
+    validity = fields.Integer(string="Validity", default=7)
     deadline = fields.Date(
         string="Deadline",
         compute="_compute_deadline",
         inverse="_inverse_deadline"
     )
-    creation_date = fields.Date(string="Creation Date")
+
+    @api.model
+    def set_create_date(self):
+        return fields.Date.today()
+
+    creation_date = fields.Date(string="Creation Date", default=set_create_date)
+
 
     @api.depends('validity', 'creation_date')
     def _compute_deadline(self):
@@ -52,6 +59,12 @@ class PropertyOffer(models.Model):
             else:
                 rec.validity = False
 
+    @api.constrains('validity')
+    def _check_validity(self):
+        for rec in self:
+            if rec.deadline <= rec.creation_date:
+                raise ValueError("Deadline must be greater than creation date")
+
     @api.depends('partner_id', 'property_id')
     def _compute_name(self):
         for rec in self:
@@ -59,3 +72,19 @@ class PropertyOffer(models.Model):
                 rec.name = f"{rec.property_id.name} - {rec.partner_id.name}"
             else:
                 rec.name = False
+
+    def action_accept_offer(self):
+        if self.property_id:
+            self.property_id.state = "accepted"
+            # self.property_id.selling_price = self.price
+            self.property_id.write(
+                {'selling_price': self.price}
+            )
+        self.status = "accepted"
+
+    def action_decline_offer(self):
+        self.status = "refused"
+        # self.property_id.selling_price = 0
+        self.property_id.write(
+            {'selling_price': 0}
+        )

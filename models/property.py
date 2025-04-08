@@ -45,7 +45,7 @@ class Property(models.Model):
     postcode = fields.Char(string="Postcode")
     date_availability = fields.Date(string="Available From")
     expected_price = fields.Float(string="Expected Price")
-    best_offer = fields.Float(streing="Best Offer")
+    best_offer = fields.Float(streing="Best Offer", compute="_compute_best_offer")
     selling_price = fields.Float(string="Selling Price")
     bedrooms = fields.Integer(string="Bedrooms")
     living_area = fields.Integer(strling="Living Area(sqm)")
@@ -107,3 +107,11 @@ class Property(models.Model):
     def _compute_offer_count(self):
         for rec in self:
             rec.offer_count = len(rec.offer_ids)
+
+    @api.depends('offer_ids')
+    def _compute_best_offer(self):
+        for rec in self:
+            if rec.offer_ids:
+                rec.best_offer = max(rec.offer_ids.mapped('price'))
+            else:
+                rec.best_offer = 0

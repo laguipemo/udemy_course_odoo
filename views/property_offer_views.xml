@@ -43,7 +43,7 @@
                 <field name="property_id" />
               </group>
               <group>
-                <field name="creation_date" />
+                <field name="creation_date" readonly="1" />
                 <field name="validity" />
                 <field name="deadline" />
               </group>
