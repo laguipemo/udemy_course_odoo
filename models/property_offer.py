@@ -79,9 +79,10 @@ class PropertyOffer(models.Model):
             self._validate_accepted_offer()
             self.property_id.state = "accepted"
             # self.property_id.selling_price = self.price
-            self.property_id.write(
-                {'selling_price': self.price}
-            )
+            self.property_id.write({
+                'selling_price': self.price,
+                'state': 'accepted'
+            })
         self.status = "accepted"
 
     def _validate_accepted_offer(self):
@@ -94,7 +95,9 @@ class PropertyOffer(models.Model):
 
     def action_decline_offer(self):
         self.status = "refused"
-        # self.property_id.selling_price = 0
-        self.property_id.write(
-            {'selling_price': 0}
-        )
+        if all(self.property_id.offer_ids.mapped('status')):
+            # self.property_id.selling_price = 0
+            self.property_id.write({
+                'selling_price': 0,
+                'state': 'received'
+            })
