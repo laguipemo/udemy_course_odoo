@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 from Crypto.Util.number import inverse
 from fsspec.registry import default
+from odoo.exceptions import ValidationError
 
 from odoo import fields, models, api
 from datetime import timedelta
@@ -75,12 +76,21 @@ class PropertyOffer(models.Model):
 
     def action_accept_offer(self):
         if self.property_id:
+            self._validate_accepted_offer()
             self.property_id.state = "accepted"
             # self.property_id.selling_price = self.price
             self.property_id.write(
                 {'selling_price': self.price}
             )
         self.status = "accepted"
+
+    def _validate_accepted_offer(self):
+        accepted_offers_ids = self.env['real_estate_ads.property_offer'].search([
+            ('property_id', '=', self.property_id.id),
+            ('status', '=', 'accepted')
+        ])
+        if accepted_offers_ids:
+            raise ValidationError("There is already an accepted offer for this property")
 
     def action_decline_offer(self):
         self.status = "refused"
