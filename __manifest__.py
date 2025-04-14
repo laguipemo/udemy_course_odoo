@@ -24,6 +24,7 @@
 
     # always loaded
     'data': [
+        'security/real_estate_ads_groups.xml',
         'security/ir.model.access.csv',
         'views/property_views.xml',
         'views/property_type_views.xml',
