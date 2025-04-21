@@ -26,6 +26,8 @@
     'data': [
         'security/real_estate_ads_groups.xml',
         'security/ir.model.access.csv',
+        'security/model_access.xml',
+        'security/ir_rule.xml',
         'views/property_views.xml',
         'views/property_type_views.xml',
         'views/property_tag_views.xml',

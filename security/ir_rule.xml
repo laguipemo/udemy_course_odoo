@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.rule" id="real_estate_ads.property_rule_for_users">
+            <field name="name">Property Rule for Users</field>
+            <field name="model_id" ref="real_estate_ads.model_real_estate_ads_property" />
+            <field name="domain_force">[('sales_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('real_estate_ads.real_estate_ads_property_group_users'))]"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_create">1</field>
+            <field name="perm_unlink">1</field>
+        </record>
+
+        <record model="ir.rule" id="real_estate_ads.property_rule_for_admins">
+            <field name="name">Property Rule for Admins</field>
+            <field name="model_id" ref="real_estate_ads.model_real_estate_ads_property" />
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('real_estate_ads.real_estate_ads_property_group_admins'))]"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_unlink" eval="True" />
+        </record>
+
+
+
+
+    </data>
+</odoo>

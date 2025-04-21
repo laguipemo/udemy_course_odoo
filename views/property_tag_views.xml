@@ -65,8 +65,11 @@
     &lt;!&ndash;<menuitem name="Menu 2" id="real_estate_ads.menu_2" parent="real_estate_ads.menu_root"/>&ndash;&gt;
 -->
     <!-- actions -->
-    <menuitem name="Property Tags" id="real_estate_ads_menu_property_tags" parent="real_estate_ads_menu_settings"
-              action="real_estate_ads_property_tag_action_window"/>
+    <menuitem name="Property Tags" id="real_estate_ads_menu_property_tags"
+              parent="real_estate_ads_menu_settings"
+              action="real_estate_ads_property_tag_action_window"
+              groups="real_estate_ads.real_estate_ads_property_group_admins"
+    />
     <!--<menuitem name="Server to list" id="real_estate_ads" parent="real_estate_ads.menu_2"
               action="real_estate_ads.action_server"/>-->
   </data>

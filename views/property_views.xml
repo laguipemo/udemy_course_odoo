@@ -184,7 +184,7 @@
                 <field name="date_availability"/>
               </group>
               <group>
-                <field name="expected_price"/>
+                <field name="expected_price" groups="real_estate_ads.real_estate_ads_property_group_admins"/>
                 <field name="best_offer"/>
                 <field name="selling_price"/>
               </group>
