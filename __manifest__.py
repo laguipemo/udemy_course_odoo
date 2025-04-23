@@ -28,6 +28,7 @@
         'security/ir.model.access.csv',
         'security/model_access.xml',
         'security/ir_rule.xml',
+        'views/menu_items.xml',
         'views/property_views.xml',
         'views/property_type_views.xml',
         'views/property_tag_views.xml',
