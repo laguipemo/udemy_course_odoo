@@ -115,3 +115,17 @@ class Property(models.Model):
                 rec.best_offer = max(rec.offer_ids.mapped('price'))
             else:
                 rec.best_offer = 0
+
+    def action_client_action_example(self):
+        return {
+            'type': 'ir.actions.client',
+            #'tag': 'reload'  # this will reload the page
+            #'tag': 'apps'  # this will open the odoo apps store
+            'tag': 'display_notification',
+            'params': {
+                'title': 'A title',
+                'message': 'A message for the notification',
+                'type': 'success',  # success, warning, danger
+                'sticky': False,  # True will make the notification sticky, false will make it disappear
+            }
+        }

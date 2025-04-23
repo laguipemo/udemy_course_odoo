@@ -84,8 +84,8 @@
     &lt;!&ndash;<menuitem name="Menu 2" id="real_estate_ads.menu_2" parent="real_estate_ads.menu_root"/>&ndash;&gt;
 -->
     <!-- actions -->
-    <menuitem name="Offers" id="real_estate_ads_menu_property_offers" parent="real_estate_ads_menu_settings"
-              action="real_estate_ads_property_offer_action_window"/>
+    <!--<menuitem name="Offers" id="real_estate_ads_menu_property_offers" parent="real_estate_ads_menu_settings"
+              action="real_estate_ads_property_offer_action_window"/>-->
     <!--<menuitem name="Server to list" id="real_estate_ads" parent="real_estate_ads.menu_2"
               action="real_estate_ads.action_server"/>-->
   </data>
