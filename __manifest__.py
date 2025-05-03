@@ -28,18 +28,24 @@
         'security/ir.model.access.csv',
         'security/model_access.xml',
         'security/ir_rule.xml',
-        'views/menu_items.xml',
         'views/property_views.xml',
         'views/property_type_views.xml',
         'views/property_tag_views.xml',
         'views/property_offer_views.xml',
         'views/views.xml',
+        'views/menu_items.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'real_estate_ads/static/src/js/my_custom_tag.js',
+            'real_estate_ads/static/src/xml/my_custom_tag.xml',
+        ],
+    },
     "installable": "True",
     "application": "True",
     "licence": "LGPL-3"

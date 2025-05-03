@@ -10,7 +10,7 @@
                 <menuitem
                         name="Property"
                         id="real_estate_ads_menu_ads_property"
-                        action="real_estate_ads_property_action_window"/>
+                        action="real_estate_ads.real_estate_ads_property_action_window"/>
 
             </menuitem>
 
@@ -19,18 +19,23 @@
                 <menuitem
                         name="Property Types"
                         id="real_estate_ads_menu_property_types"
-                        action="real_estate_ads_property_type_action_window"/>
+                        action="real_estate_ads.real_estate_ads_property_type_action_window"/>
 
                 <menuitem
                         name="Property Tags"
                         id="real_estate_ads_menu_property_tags"
-                        action="real_estate_ads_property_tag_action_window"
+                        action="real_estate_ads.real_estate_ads_property_tag_action_window"
                         groups="real_estate_ads.real_estate_ads_property_group_admins"/>
 
                 <menuitem
                         name="Offers"
                         id="real_estate_ads_menu_property_offers"
-                        action="real_estate_ads_property_offer_action_window"/>
+                        action="real_estate_ads.real_estate_ads_property_offer_action_window"/>
+
+                <menuitem
+                        name="Test Client Action"
+                        id="real_estate_ads_menu_test_client_action"
+                        action="real_estate_ads.real_estate_ads_test_custom_client_action"/>
 
             </menuitem>
 

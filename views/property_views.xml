@@ -245,21 +245,29 @@
       </field>
     </record>
 
+    <!-- actions client views on models -->
+    <record model="ir.actions.client" id="real_estate_ads_test_custom_client_action">
+      <field name="name">Custom Client Action</field>
+      <field name="tag">custom_client_action</field>
+    </record>
+
+
     <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="real_estate_ads.action_server">
-      <field name="name">real_estate_ads server</field>
-      <field name="model_id" ref="model_real_estate_ads_real_estate_ads"/>
+    <record model="ir.actions.server" id="real_estate_ads.extend_offer_deadline_action_server">
+      <field name="name">Extend Deadline</field>
+      <field name="model_id" ref="real_estate_ads.model_real_estate_ads_property_offer"/>
       <field name="state">code</field>
+      <field name="binding_model_id" ref="real_estate_ads.model_real_estate_ads_property_offer"/>
+      <field name="binding_view_types">list,form</field>
       <field name="code">
-        action = {
+        action = model.extend_offer_deadline()
+        <!--action = {
           "type": "ir.actions.act_window",
           "view_mode": "tree,form",
           "res_model": model._name,
-        }
+        }-->
       </field>
     </record>
--->
 
     <!-- Top menu item -->
 <!--    <menuitem name="Property Ads" id="real_estate_ads_menu_root" web_icon="real_estate_ads,static/description/icon.png"/>-->
