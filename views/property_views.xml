@@ -269,6 +269,19 @@
       </field>
     </record>
 
+    <!-- schedule action (cron job) -->
+    <record model="ir.cron" id="real_estate_ads.extend_offer_deadline_scheduled_action">
+      <field name="name">Offers: Extend Deadline Everyday</field>
+      <field name="model_id" ref="real_estate_ads.model_real_estate_ads_property_offer"/>
+      <field name="state">code</field>
+      <field name="code">model._extend_offer_deadline()</field>
+      <field name="interval_number">1</field>
+      <field name="interval_type">days</field>
+      <field name="numbercall">-1</field>
+      <!--<field name="doall" eval="True" />--> <!-- Ejecutar trabajos perdidos -->
+      <!--<field name="active" eval="False"/>--> <!-- Inactivar tarea -->
+    </record>
+
     <!-- Top menu item -->
 <!--    <menuitem name="Property Ads" id="real_estate_ads_menu_root" web_icon="real_estate_ads,static/description/icon.png"/>-->
 
