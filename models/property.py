@@ -129,3 +129,10 @@ class Property(models.Model):
                 'sticky': False,  # True will make the notification sticky, false will make it disappear
             }
         }
+
+    def action_url_action_example(self):
+        return {
+            'type': 'ir.actions.act_url',
+            'url': 'https://odoo.com',
+            'target': 'self' # self: abre url en la misma pestaña, new: abre url en una nueva pestaña
+        }
