@@ -136,3 +136,7 @@ class Property(models.Model):
             'url': 'https://odoo.com',
             'target': 'self' # self: abre url en la misma pestaña, new: abre url en una nueva pestaña
         }
+
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        return 'Estate Property - %s' % self.name
