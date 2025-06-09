@@ -3,6 +3,7 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+.idea
 
 # Thumbnails
 ._*
@@ -54,15 +55,22 @@ $RECYCLE.BIN/
 *.py[co]
 __pycache__/
 
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
 ### VisualStudioCode ###
 .vscode/
-
-### Pycharm ###
-/build
-/out
-/.gradle
-/.idea
 
 ### log and backups ###
 **/log/*.log
 **/*-backups/*.zip
+
+### Extra, Configurations ###
+extra_requirements.txt
+odoo.conf
